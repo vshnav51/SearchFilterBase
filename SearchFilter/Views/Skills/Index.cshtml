@@ -1,0 +1,55 @@
+﻿@model IEnumerable<SearchFilter.Models.Skill>
+
+@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm())
+{
+	<!--<div class="active-purple-4 mb-4">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-8">
+					<!--<input class="form-control" type="text" placeholder="Search" aria-label="Search">-->
+	<div class="jumbotron">
+		@foreach (var item in Model)
+		{
+			<input type="checkbox"  class="navbar-link active" name="SelectSkill" value="@item.SkillName" />  @item.SkillName
+			<br />
+		}
+	</div>
+
+	<div class="col-sm-2">
+		<input class="btn btn-primary" type="submit" value="Submit" />
+	</div>
+	<!--</div>
+	</div>-->
+
+}
+<br>
+<table class="table">
+	<tr>
+		<th>
+			@Html.ActionLink("Skill Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.SkillName)
+			</td>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id = item.SkillCode }) |
+				@Html.ActionLink("Details", "Details", new { id = item.SkillCode }) |
+				@Html.ActionLink("Delete", "Delete", new { id = item.SkillCode })
+			</td>
+		</tr>
+	}
+
+</table>
